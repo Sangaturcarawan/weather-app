@@ -8,7 +8,7 @@ btn.addEventListener('click', () => {
     if (!city) return alert('Enter a city');
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
-        .then(res => resizeBy.json())
+        .then(res => res.json())
         .then(data => {
             if(data.cod !== 200) {
                 weatherRes.textContent = 'City not found';
