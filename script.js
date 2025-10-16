@@ -4,7 +4,7 @@ const weatherRes = document.getElementById('weatherRes');
 const API_KEY = '2102fc0b219f5cb4f7a7b15cc29f7a59';
 
 btn.addEventListener('click', () => {
-    const city =cityInp.value;
+    const city =cityInp.value.trim();
     if (!city) return alert('Enter a city');
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
@@ -27,8 +27,9 @@ btn.addEventListener('click', () => {
         });
     });
 
-cityInp.addEventListener('keypress', (e) => {
+cityInp.addEventListener('keydown', (e) => {
     if (e.key === "Enter") {
+        e.preventDefault();
         btn.click();
     }
 });
