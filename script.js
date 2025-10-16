@@ -11,7 +11,7 @@ btn.addEventListener('click', () => {
         .then(res => res.json())
         .then(data => {
             if(data.cod !== 200) {
-                weatherRes.textContent = 'City not found';
+                weatherRes.textContent = data.message || 'City not found';
                 return;
             }
             weatherRes.innerHTML = `
@@ -26,6 +26,12 @@ btn.addEventListener('click', () => {
             console.error(err);
         });
     });
+
+cityInp.addEventListener('keypress', (e) => {
+    if (e.key === "Enter") {
+        btn.click();
+    }
+});
 
 // const data = 
 
@@ -63,3 +69,6 @@ btn.addEventListener('click', () => {
 // "id":1880252,
 // "name":"Singapore",
 // "cod":200}
+
+
+// {"cod":"404","message":"city not found"}
